@@ -1,4 +1,6 @@
-﻿namespace DinPlan.Models
+﻿using System.Text.Json.Serialization;
+
+namespace DinPlan.Models
 {
     public class Ingredient
     {
@@ -8,6 +10,8 @@
 
         public string Notes { get; set; } //any further comments about the ingredient.
 
-
+        public int MealId { get; set; }
+        [JsonIgnore]
+        public virtual Meal? Meal { get; set; }
     }
 }

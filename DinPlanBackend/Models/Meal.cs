@@ -8,15 +8,15 @@ namespace DinPlan.Models
         [StringLength(30)]
         public string Name { get; set; }
         [StringLength(30)]
-        public string Type { get; set; } //italian, asian, mexican, etc.
-        [StringLength(255)]
-        public string? Description { get; set; } //short description of the meal
+        public string Type { get; set; } //type of meal ie. italian, asian, mexican, etc.
         [StringLength(30)]
         public string CookType { get; set; } //oven, stove top, bake, broil, etc.
         [StringLength(30)]
         public string? CookTemp { get; set; }  //ie 350 degrees in oven. N/A if on stove top.
         [StringLength(30)]
         public string CookTime { get; set; } //how long to cook in the oven.
+        
+        public string? CookNotes { get; set; }
 
         public virtual ICollection<Ingredient>? Ingredients { get; set; }
 
