@@ -3,15 +3,15 @@ using System.ComponentModel.DataAnnotations;
 
 namespace DinPlan.Models;
 
-[Index("Username", IsUnique = true, Name = "UIDX_Username")]
-public class User
+[Index("Name", IsUnique = true, Name = "UIDX_Name")]
+public class Member
 {
 
     public int Id { get; set; }
     [StringLength(30)]
-    public string Username { get; set; }
+    public string Name { get; set; }
     [StringLength(30)]
-    public string? Email { get; set; }
+    public string? Favorite { get; set; }
 
 
 

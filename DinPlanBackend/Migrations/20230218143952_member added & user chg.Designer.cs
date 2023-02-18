@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DinPlanBackend.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230114162131_Meal & Ing update")]
-    partial class MealIngupdate
+    [Migration("20230218143952_member added & user chg")]
+    partial class memberaddeduserchg
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -62,6 +62,9 @@ namespace DinPlanBackend.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("CookNotes")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("CookTemp")
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
@@ -75,10 +78,6 @@ namespace DinPlanBackend.Migrations
                         .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
-
-                    b.Property<string>("Description")
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -97,7 +96,35 @@ namespace DinPlanBackend.Migrations
 
                     b.HasIndex("Userid");
 
+                    b.HasIndex(new[] { "Name" }, "UIDX_Name")
+                        .IsUnique();
+
                     b.ToTable("Meals");
+                });
+
+            modelBuilder.Entity("DinPlan.Models.Member", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Favorite")
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex(new[] { "Name" }, "UIDX_Name")
+                        .IsUnique();
+
+                    b.ToTable("Members");
                 });
 
             modelBuilder.Entity("DinPlan.Models.User", b =>
@@ -108,7 +135,7 @@ namespace DinPlanBackend.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Favorite")
+                    b.Property<string>("Email")
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
 

@@ -93,7 +93,35 @@ namespace DinPlanBackend.Migrations
 
                     b.HasIndex("Userid");
 
+                    b.HasIndex(new[] { "Name" }, "UIDX_Name")
+                        .IsUnique();
+
                     b.ToTable("Meals");
+                });
+
+            modelBuilder.Entity("DinPlan.Models.Member", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Favorite")
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex(new[] { "Name" }, "UIDX_Name")
+                        .IsUnique();
+
+                    b.ToTable("Members");
                 });
 
             modelBuilder.Entity("DinPlan.Models.User", b =>
@@ -104,7 +132,7 @@ namespace DinPlanBackend.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Favorite")
+                    b.Property<string>("Email")
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
 
