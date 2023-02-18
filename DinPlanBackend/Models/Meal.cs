@@ -1,7 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 
 namespace DinPlan.Models
 {
+    [Index("Name", IsUnique = true, Name = "UIDX_Name")]
     public class Meal
     {
         public int Id { get; set; }
