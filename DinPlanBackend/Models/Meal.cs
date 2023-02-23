@@ -22,7 +22,7 @@ namespace DinPlan.Models
 
         public virtual ICollection<Ingredient>? Ingredients { get; set; }
 
-        public int Userid { get; set; }
-        public virtual User? User { get; set; }
+        public int Memberid { get; set; }
+        public virtual Member? Member { get; set; }
     }
 }

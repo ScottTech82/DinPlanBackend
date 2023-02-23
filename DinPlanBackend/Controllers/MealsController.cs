@@ -33,7 +33,7 @@ namespace DinPlan.Controllers
         {
             var meal = await _context.Meals
                 .Include(x => x.Ingredients)
-                .Include(x => x.User)
+                .Include(x => x.Member)
                 .SingleOrDefaultAsync(x => x.Id == id);
 
             if (meal == null)
