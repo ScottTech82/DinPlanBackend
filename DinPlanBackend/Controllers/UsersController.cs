@@ -83,6 +83,18 @@ namespace DinPlan.Controllers
             return CreatedAtAction("GetUser", new { id = user.Id }, user);
         }
 
+        [HttpPost("{username}/{password}")]
+        public async Task<ActionResult<User>> Login(string username, string password)
+        {
+            var userX = await _context.Users.SingleOrDefaultAsync(x => x.Username == username && x.Password == password);
+            if(userX == null)
+            {
+                return NotFound();
+            }
+            return userX;
+
+        }
+
         // DELETE: api/Users/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteUser(int id)
